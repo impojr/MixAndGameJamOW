@@ -6,12 +6,22 @@ public class Patrol : MonoBehaviour
 {
     public float speed;
     public float distance;
+    public float playerDetect = 10f;
+    public Transform player;
 
     private bool movingRight = true;
 
     public Transform groundDetection;
 
-    void Update()
+    private Animator anim;
+
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
+
+    void FixedUpdate()
     {
         int layer_mask = LayerMask.GetMask("Ground");
         transform.Translate(Vector2.right * speed * Time.deltaTime);
@@ -30,6 +40,9 @@ public class Patrol : MonoBehaviour
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 movingRight = true;
             }
+
         }
     }
+
+
 }
