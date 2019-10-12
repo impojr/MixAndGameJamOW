@@ -8,6 +8,6 @@ public class AIGroundDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        AI.isGrounded = true;
+        //AI.isGrounded = true;
     }
 }
