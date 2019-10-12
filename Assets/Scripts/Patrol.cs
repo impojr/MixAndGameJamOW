@@ -8,13 +8,17 @@ public class Patrol : MonoBehaviour
     public float distance;
 
     private bool movingRight = true;
-    public bool isGrounded;
+
+    public Transform groundDetection;
 
     void Update()
     {
+        int layer_mask = LayerMask.GetMask("Ground");
         transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-        if(!isGrounded)
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector3.down, distance, layer_mask);
+
+        if(groundInfo.collider == false)
         {
             if(movingRight)
             {
@@ -28,5 +32,4 @@ public class Patrol : MonoBehaviour
             }
         }
     }
-
 }
